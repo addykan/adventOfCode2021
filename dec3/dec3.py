@@ -10,10 +10,6 @@ def writeFile(path, contents):
         f.write(contents)
 
 def getStats(strings):
-    mostCommon = -1
-    mostCount = -1
-    leastCommon = -1
-    leastCount = math.inf
     strLen = len(strings[0])
     oneCount = [0] * strLen
     for binary in strings:
@@ -34,6 +30,34 @@ def getStats(strings):
     epsilon = int(epsilonStr, base=2)
     print(f'gamma = {gamma}, epsilon = {epsilon}, power consumption = {gamma * epsilon}')
 
+def getStringList(strings, i):
+    oneStrings, zeroStrings = [], []
+    for string in strings:
+        if string[i] == '1':
+            oneStrings.append(string)
+        else:
+            zeroStrings.append(string)
+    return oneStrings, zeroStrings
+
+def getStatsPart2(strings):
+    possibleVals = [string for string in strings]
+    oxygenList = []
+    co2List = []
+    i = 0
+    while len(possibleVals) > 1 and i < len(strings[0]):
+        oneStrings, zeroStrings = getStringList(strings, i)
+        if len(oneStrings) >= len(zeroStrings):
+            possibleVals = oneStrings
+        else:
+            possibleVals = zeroStrings
+        i += 1
+    oxygen = int(possibleVals[0], base=2)
+    possibleVals = [string for string in strings]
+    i = 0
+    while len(possibleVals) > 1 and i < len(strings[0]):
+        oneStrings, zeroStrings = getStringList(strings, i)
+        if len(oneString) >= len(zeroStrings):
+            possible
 
 def main():
     filePath = 'input.txt'
